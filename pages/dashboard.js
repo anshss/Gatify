@@ -17,6 +17,7 @@ export default function Dashboard() {
         host: "0x..",
         entryContract: "0x..",
         entryTokenId: "4",
+        discordLink: "www.discord/...."
     }, {
         id: "1",
         logoLink: "https://ipfs.io/ipfs/bafybeiadpzjd56aie2l6yqiyirwsxnjicoenkqinqpamrpsv3klx2rtk5y/download.png",
@@ -24,6 +25,7 @@ export default function Dashboard() {
         host: "0x..",
         entryContract: "0x..",
         entryTokenId: "28",
+        discordLink: "www.discord/...."
     }]);
 
     const [hostedComm, setHostedComm] = useState([{
@@ -33,6 +35,7 @@ export default function Dashboard() {
         host: "0x..",
         entryContract: "0x..",
         entryTokenId: "4",
+        discordLink: "www.discord/...."
     }, {
         id: "1",
         logoLink: "https://ipfs.io/ipfs/bafybeiadpzjd56aie2l6yqiyirwsxnjicoenkqinqpamrpsv3klx2rtk5y/download.png",
@@ -40,6 +43,7 @@ export default function Dashboard() {
         host: "0x..",
         entryContract: "0x..",
         entryTokenId: "28",
+        discordLink: "www.discord/...."
     }]);
 
 
@@ -71,6 +75,7 @@ export default function Dashboard() {
                     host: i.creator,
                     entryContract: i.entryContract,
                     entryTokenId: i.entryTokenId,
+                    discordLink: i.discordLink,
                 };
                 return item;
             })
@@ -102,6 +107,7 @@ export default function Dashboard() {
                     host: i.creator,
                     entryContract: i.entryContract,
                     entryTokenId: i.entryTokenId,
+                    discordLink: i.discordLink,
                 };
                 return item;
             })
@@ -120,6 +126,8 @@ export default function Dashboard() {
             <p>{prop.host}</p>
             <p>{prop.entryContract}</p>
             <p>{prop.entryTokenId}</p>
+            <p>{prop.discordLink}</p>
+            <button src={prop.discordLink}>See Community</button>
         </div>
         ) 
     }
@@ -139,6 +147,7 @@ export default function Dashboard() {
                         tokenId={item.tokenId}
                         entryContract={item.entryContract}
                         entryTokenId={item.entryTokenId}
+                        discordLink={item.discordLink}
                     />
                 ))}
             </div>
@@ -161,6 +170,7 @@ export default function Dashboard() {
                         tokenId={item.tokenId}
                         entryContract={item.entryContract}
                         entryTokenId={item.entryTokenId}
+                        discordLink={item.discordLink}
                     />
                 ))}
             </div>

@@ -50,7 +50,7 @@ export default function Store() {
                     name: meta.data.name,
                     tokenId: i.tokenId.toNumber(),
                     supply: i.supply.toNumber(),
-                    cover: meta.data.cover,
+                    image: meta.data.image,
                 };
                 return item;
             })
@@ -63,7 +63,7 @@ export default function Store() {
         return(
             <div>
                 <p>Card</p>
-                <img src={prop.cover} alt=""/>
+                <img src={prop.image} alt=""/>
                 <p>{prop.price}</p>
                 <p>{prop.name}</p>
                 <p>{prop.tokenId}</p>
@@ -83,7 +83,7 @@ export default function Store() {
                         name={item.name}
                         tokenId={item.tokenId}
                         supply={item.supply}
-                        cover={item.cover}
+                        cover={item.image}
                     />
                 ))}
             </div>

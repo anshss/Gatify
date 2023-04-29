@@ -1,6 +1,8 @@
 import styles from "@/styles/Home.module.scss";
 import { useState } from "react";
 import { fvmAddress, polygonAddress, gatifyAbi } from "@/config";
+import { Web3Storage } from "web3.storage";
+import { ethers } from "ethers";
 
 export default function Host() {
     const [selectedTab, setSelectedTab] = useState("renderHost");
@@ -18,25 +20,112 @@ export default function Host() {
         supply: "",
         price: "",
     });
+    const [imgBase64, setImgBase64] = useState(null);
 
-    async function hostComm() {}
+    function getAccessToken() {
+        // return process.env.NEXT_PUBLIC_IpfsToken
+        return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDkyMjkyQjQ5YzFjN2ExMzhERWQxQzQ3NGNlNmEyNmM1NURFNWQ0REQiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjUyMzg2MDc1NDEsIm5hbWUiOiJNZXRhRmkifQ.cwyjEIx8vXtTnn8Y3vctroo_rooHV4ww_2xKY-MT0rs";
+    }
 
-    async function mintNft() {}
+    function makeStorageClient() {
+        return new Web3Storage({ token: getAccessToken() });
+    }
+
+    const uploadToIPFS = async (files) => {
+        const client = makeStorageClient();
+        const cid = await client.put(files);
+        return cid;
+    };
+
+    async function changeImage(prop) {
+        const reader = new FileReader();
+        if (prop) reader.readAsDataURL(prop);
+
+        reader.onload = (readerEvent) => {
+            const file = readerEvent.target.result;
+            setImgBase64(file);
+        };
+        const inputFile = prop;
+        const inputFileName = prop.name;
+        const files = [new File([inputFile], inputFileName)];
+        const metaCID = await uploadToIPFS(files);
+        const url = `https://ipfs.io/ipfs/${metaCID}/${inputFileName}`;
+        console.log(url);
+        return url;
+    }
+
+    function hostImage(e) {
+        const file = e.target.files[0];
+        const url = changeImage(file);
+        setHostInput({ ...hostInput, image: url });
+    }
+
+    function mintImage(e) {
+        const file = e.target.files[0];
+        const url = changeImage(file);
+        setMintInput({ ...mintInput, image: url });
+    }
+
+    const nftMetadata = async () => {
+        const { image, name, supply, price } = mintInput;
+        if (!image || !name || !supply || !price) return;
+        const data = JSON.stringify({ image, name });
+        const files = [new File([data], "data.json")];
+        try {
+            const metaCID = await uploadToIPFS(files);
+            const metaUrl = `https://ipfs.io/ipfs/${metaCID}/data.json`;
+            console.log(metaUrl);
+            return metaUrl;
+        } catch (error) {
+            console.log("Error uploading:", error);
+        }
+    };
+
+    async function getFvmContract() {
+        const modal = new web3modal({
+            network: "mumbai",
+            cacheProvider: true,
+        });
+        const connection = await modal.connect();
+        const provider = new ethers.providers.Web3Provider(connection);
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(fvmAddress, gatifyAbi, signer);
+        return contract;
+    }
+
+    async function hostComm() {
+        const contract = await getFvmContract();
+        const host = await contract.host(
+            hostInput.logo,
+            hostInput.eventName,
+            hostInput.entryContract,
+            hostInput.entryTokenId,
+            hostInput.discordLink,
+            {
+                gasLimit: 1000000,
+            }
+        );
+        await host.wait();
+        console.log(host);
+    }
+
+    async function mintNft() {
+        const contract = await getFvmContract();
+        const url = await nftMetadata();
+        const price = ethers.utils.parseEther(mintInput.price);
+        const supply = formInput.supply;
+        const mint = await contract.issueNft(url, supply, price, {
+            gasLimit: 1000000,
+        });
+        await mint.wait();
+        console.log(mint);
+    }
 
     function renderHost() {
         return (
             <div className={styles.hostForm}>
-                <input
-                    name="Logo"
-                    type="file"
-                    required
-                    onChange={(e) =>
-                        setHostInput({
-                            ...hostInput,
-                            logo: e.target.value,
-                        })
-                    }
-                />
+                <img src={imgBase64 || "./download.gif"} alt="" width="100px" />
+                <input name="Logo" type="file" required onChange={hostImage} />
                 <input
                     name="eventName"
                     type="text"
@@ -93,18 +182,14 @@ export default function Host() {
     function renderMint() {
         return (
             <div className={styles.mintForm}>
-            <p>{fvmAddress}</p>
+                <p>{fvmAddress}</p>
+                <img src={imgBase64 || "./download.gif"} alt="" width="100px" />
                 <input
                     name="Image"
                     type="file"
                     placeholder="Image"
                     required
-                    onChange={(e) =>
-                        setMintInput({
-                            ...mintInput,
-                            image: e.target.value,
-                        })
-                    }
+                    onChange={mintImage}
                 />
                 <input
                     name="Name"
