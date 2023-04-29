@@ -93,6 +93,7 @@ export default function Host() {
     function renderMint() {
         return (
             <div className={styles.mintForm}>
+            <p>{fvmAddress}</p>
                 <input
                     name="Image"
                     type="file"
@@ -107,7 +108,7 @@ export default function Host() {
                 />
                 <input
                     name="Name"
-                    type="file"
+                    type="text"
                     placeholder="Name"
                     required
                     onChange={(e) =>

@@ -7,7 +7,20 @@ import axios from "axios";
 
 export default function Store() {
 
-    const [nfts, setNfts] = useState([])
+    // const [nfts, setNfts] = useState([])
+    const [nfts, setNfts] = useState([{
+        price: "1",
+        name: "Twelve",
+        tokenId: "9",
+        supply: "15",
+        cover: "https://eventifyv1.vercel.app/download.gif",
+    }, {
+        price: "4",
+        name: "Owl Boats",
+        tokenId: "41",
+        supply: "10",
+        cover: "https://ipfs.io/ipfs/bafybeiadpzjd56aie2l6yqiyirwsxnjicoenkqinqpamrpsv3klx2rtk5y/download.png",
+    }])
 
     useEffect(() => {
         // fetchFvmNfts()
@@ -46,10 +59,15 @@ export default function Store() {
         setLoaded(true);
     }
 
-    function NftCard() {
+    function NftCard(prop) {
         return(
             <div>
                 <p>Card</p>
+                <img src={prop.cover} alt=""/>
+                <p>{prop.price}</p>
+                <p>{prop.name}</p>
+                <p>{prop.tokenId}</p>
+                <p>{prop.supply}</p>
             </div>
         )
     }

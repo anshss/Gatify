@@ -3,10 +3,24 @@ import { useEffect, useState } from "react";
 import { fvmAddress, polygonAddress, gatifyAbi } from "@/config";
 import web3modal from "web3modal";
 import { ethers } from "ethers";
-import axios from "axios";
 
 export default function Active() {
-    const [fvmComm, setFvmComm] = useState([]);
+    // const [fvmComm, setFvmComm] = useState([]);
+    const [fvmComm, setFvmComm] = useState([{
+        id: "1",
+        logoLink: "https://ipfs.io/ipfs/bafybeiadpzjd56aie2l6yqiyirwsxnjicoenkqinqpamrpsv3klx2rtk5y/download.png",
+        name: "TestComm 1",
+        host: "0x..",
+        entryContract: "0x..",
+        entryTokenId: "4",
+    }, {
+        id: "1",
+        logoLink: "https://ipfs.io/ipfs/bafybeiadpzjd56aie2l6yqiyirwsxnjicoenkqinqpamrpsv3klx2rtk5y/download.png",
+        name: "TestComm 2",
+        host: "0x..",
+        entryContract: "0x..",
+        entryTokenId: "28",
+    }]);
     const [loaded, setLoaded]= useState();
 
     useEffect(() => {
@@ -40,8 +54,18 @@ export default function Active() {
         setLoaded(true);
     }
 
-    function CommCard() {
-        return <div>Comm Card</div>;
+    function CommCard(prop) {
+        return (
+        <div>
+            <p>Comm Card</p>
+            <p>{prop.id}</p>
+            <img src={prop.logoLink} alt=""/>
+            <p>{prop.name}</p>
+            <p>{prop.host}</p>
+            <p>{prop.entryContract}</p>
+            <p>{prop.entryTokenId}</p>
+        </div>
+        ) 
     }
 
     return (
