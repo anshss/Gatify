@@ -1,4 +1,13 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 20rem;
+  background-color: #7AAFA3;
+  color: white;
+}
+
 .home {
+  display: flex;
   height : 100vh;
-  
 }
