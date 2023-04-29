@@ -7,8 +7,10 @@ export default function Navbar() {
         <div className={styles.navbar}>
             <Link href="/"><p>Home</p></Link>
             <Link href="/active"><p>Communities</p></Link>
+            <Link href="/store"><p>Store</p></Link>
             <Link href="/host"><p>Host</p></Link>
             <Link href="/dashboard"><p>Dashboard</p></Link>
+            <Link href="/meetings"><p>Meetings</p></Link>
             <Login />
         </div>
     );
