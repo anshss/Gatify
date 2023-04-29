@@ -46,12 +46,12 @@ const client = createClient({
         appName: 'ThePeerDao',
       },
     }),
-    new WalletConnectConnector({
-      chains,
-      options: {
-        qrcode: true,
-      },
-    }),
+    // new WalletConnectConnector({
+    //   chains,
+    //   options: {
+    //     qrcode: true,
+    //   },
+    // }),
   ],
   provider,
 })

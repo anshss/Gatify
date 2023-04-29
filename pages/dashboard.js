@@ -7,49 +7,51 @@ import { ethers } from "ethers";
 export default function Dashboard() {
 
     const [selectedTab, setSelectedTab] = useState("renderJoinedComm")
-    // const [joinedComm, setJoinedComm] = useState([])
-    // const [hostedComm, setHostedComm] = useState([])
+    const [joinedComm, setJoinedComm] = useState([])
+    const [hostedComm, setHostedComm] = useState([])
 
-    const [joinedComm, setJoinedComm] = useState([{
-        id: "1",
-        logoLink: "https://ipfs.io/ipfs/bafybeiadpzjd56aie2l6yqiyirwsxnjicoenkqinqpamrpsv3klx2rtk5y/download.png",
-        name: "TestComm 1",
-        host: "0x..",
-        entryContract: "0x..",
-        entryTokenId: "4",
-        discordLink: "www.discord/...."
-    }, {
-        id: "1",
-        logoLink: "https://ipfs.io/ipfs/bafybeiadpzjd56aie2l6yqiyirwsxnjicoenkqinqpamrpsv3klx2rtk5y/download.png",
-        name: "TestComm 2",
-        host: "0x..",
-        entryContract: "0x..",
-        entryTokenId: "28",
-        discordLink: "www.discord/...."
-    }]);
+    const [loaded, setLoaded]= useState();
 
-    const [hostedComm, setHostedComm] = useState([{
-        id: "1",
-        logoLink: "https://ipfs.io/ipfs/bafybeiadpzjd56aie2l6yqiyirwsxnjicoenkqinqpamrpsv3klx2rtk5y/download.png",
-        name: "TestComm 1",
-        host: "0x..",
-        entryContract: "0x..",
-        entryTokenId: "4",
-        discordLink: "www.discord/...."
-    }, {
-        id: "1",
-        logoLink: "https://ipfs.io/ipfs/bafybeiadpzjd56aie2l6yqiyirwsxnjicoenkqinqpamrpsv3klx2rtk5y/download.png",
-        name: "TestComm 2",
-        host: "0x..",
-        entryContract: "0x..",
-        entryTokenId: "28",
-        discordLink: "www.discord/...."
-    }]);
+    // const [joinedComm, setJoinedComm] = useState([{
+    //     id: "1",
+    //     logoLink: "https://ipfs.io/ipfs/bafybeiadpzjd56aie2l6yqiyirwsxnjicoenkqinqpamrpsv3klx2rtk5y/download.png",
+    //     name: "TestComm 1",
+    //     host: "0x..",
+    //     entryContract: "0x..",
+    //     entryTokenId: "4",
+    //     discordLink: "www.discord/...."
+    // }, {
+    //     id: "1",
+    //     logoLink: "https://ipfs.io/ipfs/bafybeiadpzjd56aie2l6yqiyirwsxnjicoenkqinqpamrpsv3klx2rtk5y/download.png",
+    //     name: "TestComm 2",
+    //     host: "0x..",
+    //     entryContract: "0x..",
+    //     entryTokenId: "28",
+    //     discordLink: "www.discord/...."
+    // }]);
+
+    // const [hostedComm, setHostedComm] = useState([{
+    //     id: "1",
+    //     logoLink: "https://ipfs.io/ipfs/bafybeiadpzjd56aie2l6yqiyirwsxnjicoenkqinqpamrpsv3klx2rtk5y/download.png",
+    //     name: "TestComm 1",
+    //     host: "0x..",
+    //     entryContract: "0x..",
+    //     entryTokenId: "4",
+    //     discordLink: "www.discord/...."
+    // }, {
+    //     id: "1",
+    //     logoLink: "https://ipfs.io/ipfs/bafybeiadpzjd56aie2l6yqiyirwsxnjicoenkqinqpamrpsv3klx2rtk5y/download.png",
+    //     name: "TestComm 2",
+    //     host: "0x..",
+    //     entryContract: "0x..",
+    //     entryTokenId: "28",
+    //     discordLink: "www.discord/...."
+    // }]);
 
 
     useEffect(() => {
-        // fetchHostedComm()
-        // fetchJoinedComm()
+        fetchHostedComm()
+        fetchJoinedComm()
     }, [])
 
     async function fetchHostedComm() {
@@ -65,16 +67,16 @@ export default function Dashboard() {
             gatifyAbi,
             signer
         );
-        const data = await contract.fetchInventory();
+        const data = await contract.hostedComms();
         const items = await Promise.all(
             data.map(async (i) => {
                 let item = {
-                    id: i.id,
+                    id: i.id.toNumber(),
                     logoLink: i.logoLink,
                     name: i.name,
                     host: i.creator,
                     entryContract: i.entryContract,
-                    entryTokenId: i.entryTokenId,
+                    entryTokenId: i.entryTokenId.toNumber(),
                     discordLink: i.discordLink,
                 };
                 return item;
@@ -97,16 +99,16 @@ export default function Dashboard() {
             gatifyAbi,
             signer
         );
-        const data = await contract.fetchInventory();
+        const data = await contract.joinedComms();
         const items = await Promise.all(
             data.map(async (i) => {
                 let item = {
-                    id: i.id,
+                    id: i.id.toNumber(),
                     logoLink: i.logoLink,
                     name: i.name,
                     host: i.creator,
                     entryContract: i.entryContract,
-                    entryTokenId: i.entryTokenId,
+                    entryTokenId: i.entryTokenId.toNumber(),
                     discordLink: i.discordLink,
                 };
                 return item;

@@ -2,13 +2,14 @@ import styles from "@/styles/Home.module.scss";
 import { useState } from "react";
 import { fvmAddress, polygonAddress, gatifyAbi } from "@/config";
 import { Web3Storage } from "web3.storage";
+import web3modal from "web3modal";
 import { ethers } from "ethers";
 
 export default function Host() {
     const [selectedTab, setSelectedTab] = useState("renderHost");
     const [hostInput, setHostInput] = useState({
-        logo: null,
-        eventName: "",
+        logoLink: null,
+        commName: "",
         entryContract: "",
         entryTokenId: "",
         entryTokenId: "",
@@ -54,15 +55,15 @@ export default function Host() {
         return url;
     }
 
-    function hostImage(e) {
+    async function hostImage(e) {
         const file = e.target.files[0];
-        const url = changeImage(file);
-        setHostInput({ ...hostInput, image: url });
+        const url = await changeImage(file);
+        setHostInput({ ...hostInput, logoLink: url });
     }
 
-    function mintImage(e) {
+    async function mintImage(e) {
         const file = e.target.files[0];
-        const url = changeImage(file);
+        const url = await changeImage(file);
         setMintInput({ ...mintInput, image: url });
     }
 
@@ -96,8 +97,8 @@ export default function Host() {
     async function hostComm() {
         const contract = await getFvmContract();
         const host = await contract.host(
-            hostInput.logo,
-            hostInput.eventName,
+            hostInput.logoLink,
+            hostInput.commName,
             hostInput.entryContract,
             hostInput.entryTokenId,
             hostInput.discordLink,
@@ -113,28 +114,37 @@ export default function Host() {
         const contract = await getFvmContract();
         const url = await nftMetadata();
         const price = ethers.utils.parseEther(mintInput.price);
-        const supply = formInput.supply;
-        const mint = await contract.issueNft(url, supply, price, {
+        const supply = mintInput.supply;
+        const mint = await contract.mintNft(url, supply, price, {
             gasLimit: 1000000,
         });
         await mint.wait();
         console.log(mint);
     }
 
+    function debugMint() {
+        console.log('debug', mintInput)
+    }
+
+    function debugHost() {
+        console.log('debug', hostInput)
+    }
+
     function renderHost() {
         return (
             <div className={styles.hostForm}>
+                <button onClick={debugHost}>click</button>
                 <img src={imgBase64 || "./download.gif"} alt="" width="100px" />
-                <input name="Logo" type="file" required onChange={hostImage} />
+                <input name="logo" type="file" required onChange={hostImage} />
                 <input
-                    name="eventName"
+                    name="commName"
                     type="text"
                     placeholder="Event Name"
                     required
                     onChange={(e) =>
                         setHostInput({
                             ...hostInput,
-                            eventName: e.target.value,
+                            commName: e.target.value,
                         })
                     }
                 />
@@ -182,6 +192,7 @@ export default function Host() {
     function renderMint() {
         return (
             <div className={styles.mintForm}>
+                <button onClick={debugMint}>click</button>
                 <p>{fvmAddress}</p>
                 <img src={imgBase64 || "./download.gif"} alt="" width="100px" />
                 <input
