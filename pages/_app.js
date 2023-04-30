@@ -61,8 +61,10 @@ export default function App({ Component, pageProps }) {
     <div>
       <WagmiConfig client={client}>
         <ConnectKitProvider debugMode>
+          <div className="container px-5">
           <Navbar />
           <Component {...pageProps} />
+          </div>
         </ConnectKitProvider>
       </WagmiConfig>
     </div>
