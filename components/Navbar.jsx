@@ -2,7 +2,7 @@ import styles from "@/styles/Home.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import Login from "./Login";
-import Logo from "../assets/images/logo_transparent.png"
+import Logo from "../assets/images/logo.png"
 
 export default function Navbar() {
   return (
