@@ -32,3 +32,9 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.bg{
+  /* background-image: url(https://img.freepik.com/free-photo/3d-cryptocurrency-rendering-design_23-2149074563.jpg?w=740&t=st=1682854792~exp=1682855392~hmac=e4c0e62c2554fca0f9606a54b874e58045bd8c8a3fbaa11131a253e514c73ad5); */
+  background-image: url(https://images.unsplash.com/photo-1639322537504-6427a16b0a28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGJsb2NrY2hhaW58ZW58MHx8MHx8&w=1000&q=80);
+  filter: grayscale(100);
+}
