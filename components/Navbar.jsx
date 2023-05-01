@@ -1,3 +1,4 @@
+import React, {useState, useEffect} from "react"
 import styles from "@/styles/Home.module.scss";
 import Link from "next/link";
 import Image from "next/image";
@@ -5,12 +6,37 @@ import Login from "./Login";
 import Logo from "../assets/images/logo.png"
 
 export default function Navbar() {
+  const [show, setShow] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const controlNavbar = () => {
+    if (typeof window !== 'undefined') { 
+      console.log("ls is", lastScrollY)
+      if (window.scrollY > lastScrollY && window.scrollY > 100) {
+        setShow(false); 
+      } else { 
+        setShow(true);  
+      }
+      setLastScrollY(window.scrollY); 
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', controlNavbar);
+
+      return () => {
+        window.removeEventListener('scroll', controlNavbar);
+      };
+    }
+  }, [lastScrollY]);
+
   return (
-    <header className="container mx-auto fixed top-0 left-0 right-0 z-40 w-full pt-0">
+    <header className={`${!show? "-top-32" : "top-2"} transition-all ease-in-out duration-500 container mx-auto fixed left-0 right-0 z-40 w-full pt-0`}>
       <div className="px-5">
         <div className="relative flex">
           {/**/}
-          <div className="flex w-full items-center justify-between rounded-3xl py-4 px-8 lg:p-10">
+          <div className={`${show && lastScrollY>100 ? "backdrop-blur" : ""} flex w-full items-center justify-between rounded-3xl py-4 px-8 lg:p-10`}>
             <div className="opacity-0 absolute inset-0 -z-10 rounded-3xl bg-gel-black/50 transition-opacity duration-500" />
             <Link className="router-link-active w-20 router-link-exact-active mt-[-2px] flex transition-all duration-300 hover:opacity-60" href="/"> 
               <Image src={Logo}/>
