@@ -4,6 +4,9 @@ import { fvmAddress, polygonAddress, gatifyAbi } from "@/config";
 import { Web3Storage } from "web3.storage";
 import web3modal from "web3modal";
 import { ethers } from "ethers";
+import Lottie from "react-lottie";
+import animationData from "../assets/lottie/animation-1.json";
+import { Tab } from "@headlessui/react";
 
 export default function Host() {
   const [selectedTab, setSelectedTab] = useState("renderHost");
@@ -130,7 +133,7 @@ export default function Host() {
     console.log("debug", hostInput);
   }
 
-  function renderHost() {
+  function RenderHost() {
     return (
       <div className={styles.hostForm}>
         <button onClick={debugHost}>click</button>
@@ -189,7 +192,7 @@ export default function Host() {
     );
   }
 
-  function renderMint() {
+  function RenderMint() {
     return (
       <div className={styles.mintForm}>
         <button onClick={debugMint}>click</button>
@@ -242,11 +245,19 @@ export default function Host() {
       </div>
     );
   }
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
 
   return (
     <div className={styles.host}>
-      <div className="hero-wrapper pb-10">
-        <div className="relative mt-8 flex flex-1 flex-col justify-end overflow-hidden rounded-[36px] p-8">
+      <div className="hero-wrapper pb-10 relative">
+        <div className="relative mt-8 flex flex-1 flex-col justify-end overflow-hidden rounded-[36px] p-8 px-12">
           <div className="hero-bg absolute inset-0 -z-10 rounded-[36px] bg-gel-black md:block [&>div]:absolute [&>div]:inset-0 [&>div]:rounded-[36px]"></div>
           {/**/}
           <h1 className="hero-title lg:leading[72px] leading-[52px] tracking-[-1.5px] md:leading-[60px] lg:tracking-[-4.5px] pt-40">
@@ -258,12 +269,12 @@ export default function Host() {
               community
             </span>
           </h1>
-          <p className="hero-text">
+          <p className="hero-text mb-8">
             <span>
               Reliable, secure &amp; easy <br /> way to host gated community
             </span>
           </p>
-          <div className="mt-8 flex flex-col items-center gap-4 md:flex-row">
+          {/* <div className="mt-8 flex flex-col items-center gap-4 md:flex-row">
             <button
               className="button button solid-gradient gradient-blue hidden w-full md:w-auto lg:block"
               onClick={() => setSelectedTab("renderHost")}
@@ -276,15 +287,82 @@ export default function Host() {
             >
               Mint
             </button>
-          </div>
+          </div> */}
+        </div>
+        <div className="absolute right-20 top-14">
+          <Lottie options={defaultOptions} height={500} width={550} />
         </div>
       </div>
 
-      <div className={styles.tab}>
+      {/* <div className={styles.tab}>
         <button onClick={() => setSelectedTab("renderHost")}>Host</button>
         <button onClick={() => setSelectedTab("renderMint")}>Mint</button>
-      </div>
-      <div>{selectedTab == "renderHost" ? renderHost() : renderMint()}</div>
+      </div> */}
+      <OurTabs RenderHost={RenderHost} RenderMint = {RenderMint} />
+      {/* <div>{selectedTab == "renderHost" ? renderHost() : renderMint()}</div> */}
+    </div>
+  );
+}
+
+function OurTabs({RenderMint, RenderHost}) {
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(" ");
+  }
+
+  return (
+    <div className="w-full max-w-md px-2 py-10 pt-0 sm:px-0">
+      <Tab.Group>
+        <Tab.List className="flex space-x-1 rounded-2xl bg-[#202020] p-2">
+          <Tab
+            key={"Host"}
+            className={({ selected }) =>
+              classNames(
+                "w-full rounded-2xl py-4 px-1 font-bold leading-5 text-[#efe0e0] text-md",
+                "focus:outline-none",
+                selected
+                  ? "bg-[#2c2f36] shadow"
+                  : "text-blue-100 hover:bg-[#2c2f36]"
+              )
+            }
+          >
+            {"Host"}
+          </Tab>
+          <Tab
+            key={"Mint"}
+            className={({ selected }) =>
+              classNames(
+                "w-full rounded-2xl py-4 px-1 font-bold leading-5 text-[#efe0e0] text-md",
+                "focus:outline-none",
+                selected
+                  ? "bg-[#2c2f36] shadow"
+                  : "text-blue-100 hover:bg-[#2c2f36]"
+              )
+            }
+          >
+            {"Mint"}
+          </Tab>
+        </Tab.List>
+        <Tab.Panels className="mt-2">
+            <Tab.Panel
+              key={0}
+              className={classNames(
+                "rounded-xl bg-white p-3",
+                "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
+              )}
+            >
+              <RenderHost />
+            </Tab.Panel>
+            <Tab.Panel
+              key={0}
+              className={classNames(
+                "rounded-xl bg-white p-3",
+                "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
+              )}
+            >
+              <RenderMint />
+            </Tab.Panel>
+        </Tab.Panels>
+      </Tab.Group>
     </div>
   );
 }
