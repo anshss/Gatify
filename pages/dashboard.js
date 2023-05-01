@@ -181,7 +181,7 @@ export default function Dashboard() {
     }
 
     return (
-        <div className={styles.dashboard}>
+        <div className="mt-40">
             <div className={styles.tab}>
                 <button onClick={() => setSelectedTab("renderJoinedComm")}>Joined Communities</button>
                 <button onClick={() => setSelectedTab("renderHostedComm")}>Hosted Communities</button>
