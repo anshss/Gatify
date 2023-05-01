@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { fvmAddress, polygonAddress, gatifyAbi } from "@/config";
 import web3modal from "web3modal";
 import { ethers } from "ethers";
-import SearchIcon from "../assets/images/search.png"
+import SearchIcon from "../assets/images/search.png";
 import Image from "next/image";
 
 export default function Active() {
@@ -76,16 +76,24 @@ export default function Active() {
   return (
     <div className={styles.active}>
       <div className="bg w-screen h-screen fixed top-0 left-0 bg-no-repeat bg-cover -z-10 opacity-10"></div>
-      <div className="container mx-auto pt-10">
+      <div className="container mx-auto pt-40">
         <div className="flex items-center flex-col justify-center ">
-            <p className="text-center text-6xl">Search any Community</p>
-            <div className="relative mt-12">
-            <Image src={SearchIcon} className="absolute top-5 left-5 w-4 h-4 " />
-            <input style={{borderRadius: "30px"}} className="text-black w-[500px] p-4 px-6 pl-12 outline-none" name="searchBar" type="text" placeholder="Name a community" />
-            </div>
+          <p className="text-center text-6xl">Search any Community</p>
+          <div className="relative mt-12">
+            <Image
+              src={SearchIcon}
+              className="absolute top-5 left-5 w-4 h-4 "
+            />
+            <input
+              style={{ borderRadius: "8px" }}
+              className="text-black w-[500px] p-4 px-6 pl-12 outline-none"
+              name="searchBar"
+              type="text"
+              placeholder="Name a community"
+            />
+          </div>
         </div>
 
-        
         {/* <div>
           {fvmComm.map((item, i) => (
             <CommCard
