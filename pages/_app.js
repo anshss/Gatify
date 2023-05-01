@@ -25,8 +25,22 @@ const hyperspace = {
   },
 }
 
+const mantleTestnet = {
+  id: 5001,
+  name: 'Mantle Testnet',
+  network: 'Mantle Testnet',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'BIT',
+    symbol: 'BIT',
+  },
+  rpcUrls: {
+    default: "https://rpc.testnet.mantle.xyz",
+  },
+}
+
 const { chains, provider } = configureChains(
-  [hyperspace, polygonMumbai],
+  [hyperspace, polygonMumbai, mantleTestnet],
   [
     jsonRpcProvider({
       rpc: (chain) => ({

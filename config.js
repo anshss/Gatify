@@ -1,5 +1,6 @@
 export const fvmAddress = `0xC4ae84c5f31041d0E6842438497cc9e7DC57F615`
 export const polygonAddress = `0xC4ae84c5f31041d0E6842438497cc9e7DC57F615`
+export const mantleTestnetAddress = `0xC4ae84c5f31041d0E6842438497cc9e7DC57F615`
 
 export const gatifyAbi = `[
 	{
