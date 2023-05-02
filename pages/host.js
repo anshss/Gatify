@@ -438,7 +438,7 @@ function RenderHost({
           </div>
           <button
             type="submit"
-            className="text-white mt-5 gradient-blue w-40 bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-3 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-blue-900 dark:focus:ring-gray-700 dark:border-gray-700"
+            className="text-white mt-5 gradient-blue w-40 bg-[#4b507a] hover:bg-slate-800 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-3 mr-2 mb-2 dark:bg-[#4b507a] dark:hover:bg-slate-800 dark:focus:ring-gray-700 dark:border-gray-700"
           >
             Host
           </button>
@@ -604,7 +604,7 @@ function RenderMint({
             </div>
             <button
               type="submit"
-              className="text-white mt-5 gradient-blue w-40 bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-3 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-blue-900 dark:focus:ring-gray-700 dark:border-gray-700"
+              className="text-white mt-5 gradient-blue w-40 bg-[#4b507a] hover:bg-slate-400 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-3 mr-2 mb-2 dark:bg-[#4b507a] dark:hover:bg-slate-700 dark:focus:ring-gray-700 dark:border-gray-700"
             >
               Mint
             </button>

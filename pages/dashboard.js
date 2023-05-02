@@ -5,6 +5,10 @@ import web3modal from "web3modal";
 import { ethers } from "ethers";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { Tab } from "@headlessui/react";
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 
 export default function Dashboard() {
   const [selectedTab, setSelectedTab] = useState("renderJoinedComm");
@@ -118,14 +122,14 @@ export default function Dashboard() {
 
           <div className="flex gap-8 justify-between">
             {/* <Link href="/"> */}
-              <div className="flex justify-between">
-                <button
-                  className="w-[300px] font-medium px-2 text-xs lg:text-base lg:px-5 py-2 text-white rounded-xl lg:rounded-2xl hover:opacity-70 bg-black"
-                  onClick={() => discord(prop)}
-                >
-                  Join server
-                </button>
-              </div>
+            <div className="flex justify-between">
+              <button
+                className="w-[300px] font-medium px-2 text-xs lg:text-base lg:px-5 py-2 text-white rounded-xl lg:rounded-2xl hover:opacity-70 bg-black"
+                onClick={() => discord(prop)}
+              >
+                Join server
+              </button>
+            </div>
             {/* </Link> */}
           </div>
         </div>
@@ -153,14 +157,14 @@ export default function Dashboard() {
 
           <div className="flex gap-8 justify-between">
             {/* <Link href="/"> */}
-              <div className="flex justify-between">
-                <button
-                  className="w-[300px] font-medium px-2 text-xs lg:text-base lg:px-5 py-2 text-white rounded-xl lg:rounded-2xl hover:opacity-70 bg-black"
-                  onClick={() => discord(prop)}
-                >
-                  See server
-                </button>
-              </div>
+            <div className="flex justify-between">
+              <button
+                className="w-[300px] font-medium px-2 text-xs lg:text-base lg:px-5 py-2 text-white rounded-xl lg:rounded-2xl hover:opacity-70 bg-black"
+                onClick={() => discord(prop)}
+              >
+                See server
+              </button>
+            </div>
             {/* </Link> */}
           </div>
         </div>
@@ -216,18 +220,49 @@ export default function Dashboard() {
 
   return (
     <div className="mt-40">
-      <div className="flex gap-5 relative z-10 mt-5">
-        <button onClick={() => setSelectedTab("renderJoinedComm")}>
-          Joined
-        </button>
-        <button onClick={() => setSelectedTab("renderHostedComm")}>
-          Hosted
-        </button>
-      </div>
-      <div>
-        {selectedTab == "renderJoinedComm"
-          ? renderJoinedComm()
-          : renderHostedComm()}
+      <div className="w-fullpx-2 py-10 pt-0 sm:px-0">
+        <Tab.Group>
+          <Tab.List className="flex space-x-1  max-w-md  rounded-2xl bg-[#202020] p-2">
+            <Tab
+              key={"Joined"}
+              className={({ selected }) =>
+                classNames(
+                  "w-full rounded-2xl py-4 px-1 font-bold leading-5 text-[#efe0e0] text-md",
+                  "focus:outline-none",
+                  selected ? "bg-[#4b507a] shadow" : "hover:bg-[#2c2f36]"
+                )
+              }
+            >
+              {"Joined"}
+            </Tab>
+            <Tab
+              key={"Hosted"}
+              className={({ selected }) =>
+                classNames(
+                  "w-full rounded-2xl py-4 px-1 font-bold leading-5 text-[#efe0e0] text-md",
+                  "focus:outline-none",
+                  selected ? "bg-[#4b507a] shadow" : "hover:bg-[#2c2f36]"
+                )
+              }
+            >
+              {"Hosted"}
+            </Tab>
+          </Tab.List>
+          <Tab.Panels className="mt-8">
+            <Tab.Panel
+              key={0}
+              className={classNames("rounded-xl bg-[#202020] p-3")}
+            >
+              {renderJoinedComm()}
+            </Tab.Panel>
+            <Tab.Panel
+              key={1}
+              className={classNames("rounded-xl bg-[#202020] p-3")}
+            >
+              {renderHostedComm()}
+            </Tab.Panel>
+          </Tab.Panels>
+        </Tab.Group>
       </div>
     </div>
   );
