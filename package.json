@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.14",
+    "@huddle01/huddle01-iframe": "^0.0.9",
     "@openzeppelin/contracts": "^4.8.3",
     "axios": "^1.4.0",
     "connectkit": "^1.1.1",

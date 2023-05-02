@@ -49,7 +49,7 @@ export default function Active() {
     setLoaded(true);
   }
 
-  function buy(prop) {
+  function buy() {
     router.push("/");
   }
 
