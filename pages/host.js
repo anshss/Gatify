@@ -135,7 +135,7 @@ export default function Host() {
 
   function RenderHost() {
     return (
-      <div className={styles.hostForm}>
+      <div className="">
         <button onClick={debugHost}>click</button>
         <img src={imgBase64 || "./download.gif"} alt="" width="100px" />
         <input name="logo" type="file" required onChange={hostImage} />
@@ -192,23 +192,32 @@ export default function Host() {
     );
   }
 
-  function RenderMint() {
+  function RenderMint({}) {
     return (
-      <div className={styles.mintForm}>
-        <button onClick={debugMint}>click</button>
+      <div className="">
+        <div className="">
+
+        </div>
+
+
         <p>{fvmAddress}</p>
         <img src={imgBase64 || "./download.gif"} alt="" width="100px" />
+        <div className="flex flex-col w-full items-center ">
+
+
         <input
           name="Image"
           type="file"
           placeholder="Image"
           required
           onChange={mintImage}
+          className="mb-2 px-4 py-6 "
         />
         <input
           name="Name"
           type="text"
           placeholder="Name"
+          className="mb-2 px-3 py-6 w-[600px] rounded-xl bg-gray-500"
           required
           onChange={(e) =>
             setMintInput({
@@ -221,6 +230,7 @@ export default function Host() {
           name="supply"
           type="number"
           placeholder="Supply"
+          className="mb-2 px-3 py-6 w-[600px] rounded-xl bg-gray-500"
           required
           onChange={(e) =>
             setMintInput({
@@ -233,6 +243,7 @@ export default function Host() {
           name="price"
           type="number"
           placeholder="Price"
+          className="mb-2 px-3 py-6 w-[600px] rounded-xl bg-gray-500"
           required
           onChange={(e) =>
             setMintInput({
@@ -241,7 +252,11 @@ export default function Host() {
             })
           }
         />
+        </div>
+
         <button onClick={mintNft}>Mint</button>
+        <button onClick={debugMint}>click</button>
+
       </div>
     );
   }
@@ -310,9 +325,9 @@ function OurTabs({RenderMint, RenderHost}) {
   }
 
   return (
-    <div className="w-full max-w-md px-2 py-10 pt-0 sm:px-0">
+    <div className="w-fullpx-2 py-10 pt-0 sm:px-0">
       <Tab.Group>
-        <Tab.List className="flex space-x-1 rounded-2xl bg-[#202020] p-2">
+        <Tab.List className="flex space-x-1  max-w-md  rounded-2xl bg-[#202020] p-2">
           <Tab
             key={"Host"}
             className={({ selected }) =>
@@ -320,8 +335,8 @@ function OurTabs({RenderMint, RenderHost}) {
                 "w-full rounded-2xl py-4 px-1 font-bold leading-5 text-[#efe0e0] text-md",
                 "focus:outline-none",
                 selected
-                  ? "bg-[#2c2f36] shadow"
-                  : "text-blue-100 hover:bg-[#2c2f36]"
+                  ? "bg-[#4b507a] shadow"
+                  : "hover:bg-[#2c2f36]"
               )
             }
           >
@@ -334,19 +349,19 @@ function OurTabs({RenderMint, RenderHost}) {
                 "w-full rounded-2xl py-4 px-1 font-bold leading-5 text-[#efe0e0] text-md",
                 "focus:outline-none",
                 selected
-                  ? "bg-[#2c2f36] shadow"
-                  : "text-blue-100 hover:bg-[#2c2f36]"
+                  ? "bg-[#4b507a] shadow"
+                  : "hover:bg-[#2c2f36]"
               )
             }
           >
             {"Mint"}
           </Tab>
         </Tab.List>
-        <Tab.Panels className="mt-2">
+        <Tab.Panels className="mt-8">
             <Tab.Panel
               key={0}
               className={classNames(
-                "rounded-xl bg-white p-3",
+                "rounded-xl bg-[#202020] p-3",
                 "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
               )}
             >
@@ -355,7 +370,7 @@ function OurTabs({RenderMint, RenderHost}) {
             <Tab.Panel
               key={0}
               className={classNames(
-                "rounded-xl bg-white p-3",
+                "rounded-xl bg-[#202020] p-3",
                 "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
               )}
             >

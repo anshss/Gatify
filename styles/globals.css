@@ -45,7 +45,7 @@ a {
 
 @media (min-width: 768px) {
   .hero-wrapper {
-      height:85vh
+      height:80vh
   }
 }
 
@@ -80,6 +80,7 @@ a {
   background-image: linear-gradient(274.27deg,#4b507a 2.64%,#a2c7ff 95.69%);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }

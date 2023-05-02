@@ -79,7 +79,7 @@ export default function Store() {
 
   function NftCard(prop) {
     return (
-      <div className="relative flex  w-1/3 flex-col rounded-xl bg-gel-black text-sm overflow-hidden">
+      <div className="relative flex  w-[23%] flex-col rounded-xl bg-gel-black text-sm overflow-hidden">
         <div className="flex flex-1 flex-col">
           <div className="rounded-t-3xl ">
             <img className="w-full" src={prop.image} alt="" width="200px" />
@@ -126,7 +126,62 @@ export default function Store() {
   return (
     <div className="pt-40">
       <p>Store</p>
-      <div>
+      <div className="flex flex-wrap gap-6 justify-start">
+        {nfts.map((item, i) => (
+          <NftCard
+            key={i}
+            price={item.price}
+            name={item.name}
+            tokenId={item.tokenId}
+            supply={item.supply}
+            image={item.image}
+            remaining={item.remaining}
+          />
+        ))}
+        {nfts.map((item, i) => (
+          <NftCard
+            key={i}
+            price={item.price}
+            name={item.name}
+            tokenId={item.tokenId}
+            supply={item.supply}
+            image={item.image}
+            remaining={item.remaining}
+          />
+        ))}
+        {nfts.map((item, i) => (
+          <NftCard
+            key={i}
+            price={item.price}
+            name={item.name}
+            tokenId={item.tokenId}
+            supply={item.supply}
+            image={item.image}
+            remaining={item.remaining}
+          />
+        ))}
+        {nfts.map((item, i) => (
+          <NftCard
+            key={i}
+            price={item.price}
+            name={item.name}
+            tokenId={item.tokenId}
+            supply={item.supply}
+            image={item.image}
+            remaining={item.remaining}
+          />
+        ))}
+        {nfts.map((item, i) => (
+          <NftCard
+            key={i}
+            price={item.price}
+            name={item.name}
+            tokenId={item.tokenId}
+            supply={item.supply}
+            image={item.image}
+            remaining={item.remaining}
+          />
+        ))}
         {nfts.map((item, i) => (
           <NftCard
             key={i}
