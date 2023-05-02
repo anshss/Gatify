@@ -91,7 +91,7 @@ export default function Active() {
                   className="w-[120px] font-medium px-2 text-xs lg:text-base lg:px-5 py-2 text-white rounded-xl lg:rounded-2xl hover:opacity-70 bg-black"
                   onClick={buy}
                 >
-                  Buy
+                  Buy NFT
                 </button>
               </div>
             ) : null}
