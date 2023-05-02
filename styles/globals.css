@@ -92,3 +92,19 @@ a {
     margin-bottom: 2rem;
     overflow-wrap: break-word;
 }
+
+.form-input{
+  background-color: #191919;
+  border-radius: 1rem;
+  display: block;
+  font-size: .875rem;
+  line-height: 1.25rem;
+  transition-duration: .3s;
+  transition-property: color,background-color,border-color,text-decoration-color,fill,stroke;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  width: 100%;
+}
+
+.gradient-blue {
+  background: #3872DD;
+}
