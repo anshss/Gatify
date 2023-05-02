@@ -4,10 +4,17 @@ import Link from "next/link";
 import Image from "next/image";
 import Login from "./Login";
 import Logo from "../assets/images/logo.png"
+import { useRouter } from 'next/router';
 
 export default function Navbar() {
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const router = useRouter();
+
+  const isActive = (pathname) => {
+    return router.pathname === pathname;
+  };
 
   const controlNavbar = () => {
     if (typeof window !== 'undefined') { 
@@ -42,14 +49,14 @@ export default function Navbar() {
             </Link>
             <nav className="relative z-10 transition-colors duration-300">
               <ul className="hidden flex-row items-center text-[15px] font-medium lg:flex [&>button]:px-10">
-                <li>
+                <li className={isActive('/') ? "text-blue-500" : ''}>
                   <div className="relative inline-block w-full text-left">
                     <Link className="hover:opacity-75 lg:pl-5 lg:pr-5" href="/">
                       Home
                     </Link>
                   </div>
                 </li>
-                <li>
+                <li className={isActive('/communities') ? "text-blue-500" : ''}>
                   <div className="relative inline-block w-full text-left">
                     <Link
                       className="hover:opacity-75 lg:pl-5 lg:pr-5"
@@ -59,7 +66,7 @@ export default function Navbar() {
                     </Link>
                   </div>
                 </li>
-                <li>
+                <li className={isActive('/store') ? "text-blue-500" : ''}> 
                   <div className="relative inline-block w-full text-left">
                     <Link
                       className="hover:opacity-75 lg:pl-5 lg:pr-5"
@@ -69,7 +76,7 @@ export default function Navbar() {
                     </Link>
                   </div>
                 </li>
-                <li>
+                <li className={isActive('/host') ? "text-blue-500" : ''}>
                   <div className="relative inline-block w-full text-left">
                     <Link
                       className="hover:opacity-75 lg:pl-5 lg:pr-5"
@@ -79,8 +86,7 @@ export default function Navbar() {
                     </Link>
                   </div>
                 </li>
-                {/*]*/}
-                <li>
+                <li className={isActive('/dashboard') ? "text-blue-500" : ''}> 
                   <div className="relative inline-block w-full text-left">
                     <Link
                       className="hover:opacity-75 lg:pl-5 lg:pr-5"
@@ -90,7 +96,7 @@ export default function Navbar() {
                     </Link>
                   </div>
                 </li>
-                <li>
+                <li className={isActive('/meetings') ? "text-blue-500" : ''}>
                   <div className="relative inline-block w-full text-left">
                     <Link
                       className="hover:opacity-75 lg:pl-5 lg:pr-5"

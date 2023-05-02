@@ -4,6 +4,7 @@ import { fvmAddress, polygonAddress, gatifyAbi, fvmCurrency } from "@/config";
 import web3modal from "web3modal";
 import { ethers } from "ethers";
 import axios from "axios";
+import Footer from "@/components/Footer";
 
 export default function Store() {
   const [nfts, setNfts] = useState([]);
@@ -127,6 +128,7 @@ export default function Store() {
           />
         ))}
       </div>
+      <Footer />
     </div>
   );
 }
