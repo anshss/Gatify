@@ -1,10 +1,11 @@
 import styles from "@/styles/Home.module.scss";
 import { useEffect, useState } from "react";
-import { fvmAddress, polygonAddress, gatifyAbi } from "@/config";
+import { fvmAddress, polygonAddress, gatifyAbi, polygonExplorer } from "@/config";
 import web3modal from "web3modal";
 import { ethers } from "ethers";
 import SearchIcon from "../assets/images/search.png";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export default function Active() {
   const [fvmComm, setFvmComm] = useState([]);
@@ -13,6 +14,8 @@ export default function Active() {
     item.name.includes(searchQuery)
   );
   const [loaded, setLoaded] = useState();
+
+  const router = useRouter();
 
   useEffect(() => {
     fetchFvm();
@@ -46,31 +49,53 @@ export default function Active() {
     setLoaded(true);
   }
 
+  function buy(prop) {
+    router.push("/");
+  }
+
+  function explorer(prop) {
+    router.push(`${polygonExplorer}/address/${prop.entryContract}`);
+  }
+
   function CommCard(prop) {
     return (
-      <div className=" relative flex  mt-10 w-3/4 mx-auto flex-row rounded-xl bg-gel-black text-sm overflow-hidden">
-        <div className="flex flex-1 flex-col">
-          <div className="rounded-t-3xl p-4 ">
-            <img className="w-[250px]" src={prop.logoLink} alt="" />
+      <div className=" relative flex mt-10 w-2/3 mx-auto flex-row rounded-xl bg-gel-black text-sm overflow-hidden">
+        <div className="flex mr-8 flex-col">
+          <div className="rounded-t-3xl p-4 w-[230px] ">
+            <img className="w-full" src={prop.logoLink} alt="" />
           </div>
-
           <div className="use-case-projects flex transition-all delay-100 duration-200 group-hover:translate-y-5 group-hover:scale-105 group-hover:opacity-0"></div>
         </div>
-        <div className="flex-1  p-4 mt-4 text-[18px]">
-          <div className="flex justify-between">
-            <button
-              className="font-medium px-2 text-xs lg:text-base lg:px-5 py-2 text-white rounded-xl lg:rounded-2xl hover:opacity-70 bg-blue-600"
-              onClick={() => buy(prop)}
-            >
-              Buy
-            </button>
+        <div className="flex-1  p-1 mt-4 text-[17px] items-start flex justify-center flex-col">
+          <p className="mb-4 text-[25px] capitalize">{prop.name}</p>
+          {/* <p>{prop.host}</p> */}
+          <p className="mb-2">Requirements:</p>
+          <div className="flex gap-2">
+            <p>{prop.entryContract}</p>
+            <p className="mb-6">#{prop.entryTokenId}</p>
           </div>
-          <p>{prop.id}</p>
 
-          <p>{prop.name}</p>
-          <p>{prop.host}</p>
-          <p>{prop.entryContract}</p>
-          <p>{prop.entryTokenId}</p>
+          <div className="flex gap-8 justify-between">
+            <div className="flex justify-between">
+              <button
+                className="w-[220px] font-medium px-2 text-xs lg:text-base lg:px-5 py-2 text-white rounded-xl lg:rounded-2xl hover:opacity-70 bg-black"
+                onClick={() => explorer(prop)}
+              >
+                View in Explorer
+              </button>
+            </div>
+
+            {prop.entryContract == fvmAddress ? (
+              <div className="flex justify-between">
+                <button
+                  className="w-[120px] font-medium px-2 text-xs lg:text-base lg:px-5 py-2 text-white rounded-xl lg:rounded-2xl hover:opacity-70 bg-black"
+                  onClick={buy}
+                >
+                  Buy
+                </button>
+              </div>
+            ) : null}
+          </div>
         </div>
       </div>
     );

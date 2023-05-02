@@ -2,6 +2,16 @@ export const fvmAddress = `0xC4ae84c5f31041d0E6842438497cc9e7DC57F615`
 export const polygonAddress = `0xC4ae84c5f31041d0E6842438497cc9e7DC57F615`
 export const mantleTestnetAddress = `0xC4ae84c5f31041d0E6842438497cc9e7DC57F615`
 
+
+export const fvmCurrency=`tFIL`
+export const polygonCurrency=`MATIC`
+export const mantleCurrency=`BIT`
+
+export const fvmExplorer=`https://hyperspace.filfox.info/en/address/0x48e6a467852fa29710aaacdb275f85db4fa420eb`
+export const polygonExplorer=`https://mumbai.polygonscan.com/`
+export const mantleExplorer=`BIT`
+
+
 export const gatifyAbi = `[
 	{
 		"inputs": [],

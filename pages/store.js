@@ -1,6 +1,6 @@
 import styles from "@/styles/Home.module.scss";
 import { useEffect, useState } from "react";
-import { fvmAddress, polygonAddress, gatifyAbi } from "@/config";
+import { fvmAddress, polygonAddress, gatifyAbi, fvmCurrency } from "@/config";
 import web3modal from "web3modal";
 import { ethers } from "ethers";
 import axios from "axios";
@@ -85,103 +85,36 @@ export default function Store() {
             <img className="w-full" src={prop.image} alt="" width="200px" />
           </div>
           <div className="p-6">
-            {/* <div className="mt-2 flex-1 text-2xl font-bold transition-all delay-75 duration-200 group-hover:-translate-y-5 group-hover:scale-105 group-hover:opacity-0">
-                Harvesting Yield Farming Vaults
-            </div> */}
-            <div>
-            <p>{prop.tokenId}</p>
-            </div>
-            <div className="flex justify-between">
+            <div></div>
+            <div className="flex gap-2">
               <p>{prop.name}</p>
-              <p>{prop.price}</p>
+              <p>#{prop.tokenId}</p>
             </div>
             <div className="flex justify-between">
-              <p>{prop.supply}</p>
-              <p>{prop.remaining}</p>
+              <p>
+                {prop.supply}/{prop.remaining}
+              </p>
+            <p>{prop.price} {fvmCurrency}</p>
             </div>
-            <div className="flex justify-between">
-                
-              <button className="font-medium px-2 text-xs lg:text-base lg:px-5 py-2 text-white rounded-xl lg:rounded-2xl hover:opacity-70 bg-blue-600" onClick={() => buy(prop)}>Buy</button>
-              <p>{prop.price}</p>
+            <div className="flex justify-between mt-2">
+              <button
+                className="w-[100px] font-medium px-2 text-xs lg:text-base lg:px-5 py-2 text-white rounded-xl lg:rounded-2xl hover:opacity-70 bg-blue-600"
+                onClick={() => buy(prop)}
+              >
+                Buy
+              </button>
             </div>
           </div>
 
           <div className="use-case-projects flex transition-all delay-100 duration-200 group-hover:translate-y-5 group-hover:scale-105 group-hover:opacity-0"></div>
         </div>
       </div>
-
-      // <div>
-      //     <p>Card</p>
-      //     <img src={prop.image} alt="" width="200px"/>
-      //   <p>{prop.price}</p>
-      //   <p>{prop.name}</p>
-      //   <p>{prop.tokenId}</p>
-      //   <p>{prop.supply}</p>
-      //   <p>{prop.remaining}</p>
-      //   <button onClick={() => buy(prop)}>Buy</button>
-      // </div>
     );
   }
 
   return (
     <div className="pt-40">
-      <p>Store</p>
-      <div className="flex flex-wrap gap-6 justify-start">
-        {nfts.map((item, i) => (
-          <NftCard
-            key={i}
-            price={item.price}
-            name={item.name}
-            tokenId={item.tokenId}
-            supply={item.supply}
-            image={item.image}
-            remaining={item.remaining}
-          />
-        ))}
-        {nfts.map((item, i) => (
-          <NftCard
-            key={i}
-            price={item.price}
-            name={item.name}
-            tokenId={item.tokenId}
-            supply={item.supply}
-            image={item.image}
-            remaining={item.remaining}
-          />
-        ))}
-        {nfts.map((item, i) => (
-          <NftCard
-            key={i}
-            price={item.price}
-            name={item.name}
-            tokenId={item.tokenId}
-            supply={item.supply}
-            image={item.image}
-            remaining={item.remaining}
-          />
-        ))}
-        {nfts.map((item, i) => (
-          <NftCard
-            key={i}
-            price={item.price}
-            name={item.name}
-            tokenId={item.tokenId}
-            supply={item.supply}
-            image={item.image}
-            remaining={item.remaining}
-          />
-        ))}
-        {nfts.map((item, i) => (
-          <NftCard
-            key={i}
-            price={item.price}
-            name={item.name}
-            tokenId={item.tokenId}
-            supply={item.supply}
-            image={item.image}
-            remaining={item.remaining}
-          />
-        ))}
+      <div className="flex flex-wrap mt-6 gap-6 justify-start">
         {nfts.map((item, i) => (
           <NftCard
             key={i}
