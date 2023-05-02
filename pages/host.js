@@ -65,7 +65,9 @@ export default function Host() {
 
   async function hostImage(e) {
     const file = e.target.files[0];
+    setLoading(true)
     const url = await changeImage(file);
+    setLoading(false)
     setHostInput({ ...hostInput, logoLink: url });
   }
 
@@ -119,9 +121,8 @@ export default function Host() {
   }
 
   async function mintNft() {
-    setLoading(true)
-    try{
-
+    setLoading(true);
+    try {
       const contract = await getFvmContract();
       const url = await nftMetadata();
       const price = ethers.utils.parseEther(mintInput.price);
@@ -130,22 +131,19 @@ export default function Host() {
         gasLimit: 1000000,
       });
       await mint.wait();
-      setLoading(false)
+      setLoading(false);
       setMintInput({
         image: null,
         name: "",
         supply: "",
         price: "",
       });
-      
 
       console.log(mint);
-    }
-    catch(e){
-    setLoading(false)
+    } catch (e) {
+      setLoading(false);
 
-
-      alert(e)
+      alert(e);
     }
   }
 
@@ -157,206 +155,61 @@ export default function Host() {
     console.log("debug", hostInput);
   }
 
-  function RenderHost() {
-    return (
-      <div className="">
-        <button onClick={debugHost}>click</button>
-        <img src={imgBase64 || "./download.gif"} alt="" width="100px" />
-        <input name="logo" type="file" required onChange={hostImage} />
-        <input
-          name="commName"
-          type="text"
-          placeholder="Event Name"
-          required
-          onChange={(e) =>
-            setHostInput({
-              ...hostInput,
-              commName: e.target.value,
-            })
-          }
-        />
-        <input
-          name="entryContract"
-          type="text"
-          placeholder="Contract Address"
-          required
-          onChange={(e) =>
-            setHostInput({
-              ...hostInput,
-              entryContract: e.target.value,
-            })
-          }
-        />
-        <input
-          name="entryTokenId"
-          type="number"
-          placeholder="Token Id"
-          required
-          onChange={(e) =>
-            setHostInput({
-              ...hostInput,
-              entryTokenId: e.target.value,
-            })
-          }
-        />
-        <input
-          name="discordLink"
-          type="text"
-          placeholder="Discord Server Link"
-          required
-          onChange={(e) =>
-            setHostInput({
-              ...hostInput,
-              discordLink: e.target.value,
-            })
-          }
-        />
-        <button onClick={hostComm}>Host</button>
-      </div>
-    );
-  }
-
-  // function RenderMint({mintInput, setMintInput }) {
-  //   function onSubmit(e) {
-  //     e.preventDefault()
-  //     console.log(mintInput)
-  //   }
-
+  // function RenderHost() {
   //   return (
-  //     <div className=" px-10 py-10">
-  //       <div>
-  //         <div>
-  //           <h1 className="mb-6 block text-md font-semibold">
-  //              Deployer Contract Address: {fvmAddress}
-  //           </h1>
-  //           <form onSubmit={onSubmit} noValidate="" className="flex flex-col gap-4">
-  //             <div>
-  //               <label
-  //                 htmlFor="name"
-  //                 className="ml-2 mb-2 block text-sm font-semibold"
-  //               >
-  //                 Name
-  //               </label>
-  //               <div className="relative">
-  //                 <input
-  //                   id="name"
-  //                   onChange={(e) =>
-  //                     setMintInput({
-  //                       ...mintInput,
-  //                       name: e.target.value,
-  //                     })
-  //                   }
-  //                   value={mintInput.name}
-  //                   className="border-gel-background border px-6 py-3 form-input"
-  //                   name="name"
-  //                 />
-  //               </div>
-  //             </div>
-  //             <div className="flex w-full gap-6">
-  //               <div className="flex-1">
-  //                 <label
-  //                   htmlFor="email"
-  //                   className="ml-2 mb-2 block text-sm font-semibold"
-  //                 >
-  //                   Price
-  //                 </label>
-  //                 <div className="relative">
-  //                   <input
-  //                     id="price"
-  //                     type="number"
-  //                     className="input-error border-gel-accent border px-6 py-3 form-input"
-  //                     name="price"
-  //                     onChange={(e) =>
-  //                       setMintInput({
-  //                         ...mintInput,
-  //                         price: e.target.value,
-  //                       })
-  //                     }
-  //                     value={mintInput.price}
-  //                   />
-  //                 </div>
-  //                 {/* <div className="p-2 text-sm text-gel-accent first-letter:capitalize">
-  //                   This field is required
-  //                 </div> */}
-  //               </div>
-  //               <div className="flex-1">
-  //                 <label
-  //                   htmlFor="email"
-  //                   className="ml-2 mb-2 block text-sm font-semibold"
-  //                 >
-  //                   Supply
-  //                 </label>
-  //                 <div className="relative">
-  //                   <input
-  //                     id="supply"
-  //                     type="number"
-  //                     className="input-error border-gel-accent border px-6 py-3 form-input"
-  //                     name="supply"
-  //                     value={mintInput.supply}
-  //                     onChange={(e) =>
-  //                       setMintInput({
-  //                         ...mintInput,
-  //                         supply: e.target.value,
-  //                       })
-  //                     }
-  //                   />
-  //                 </div>
-  //                 {/* <div className="p-2 text-sm text-gel-accent first-letter:capitalize">
-  //                   This field is required
-  //                 </div> */}
-  //               </div>
-  //             </div>
-
-  //             <div>
-  //               <p  className="ml-2 mb-2 block text-sm font-semibold">Choose File</p>
-  //               <div className="flex ">
-  //                 <div className="flex items-center justify-center w-full">
-  //                   <label
-  //                     htmlFor="dropzone-file"
-  //                     className="flex flex-col items-center justify-center w-full capa h-64 border-2 border-dashed rounded-lg cursor-pointer bg-[#191919] hover:bg-gray-800"
-  //                   >
-  //                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
-  //                       <svg
-  //                         aria-hidden="true"
-  //                         className="w-10 h-10 mb-3 text-gray-400"
-  //                         fill="none"
-  //                         stroke="currentColor"
-  //                         viewBox="0 0 24 24"
-  //                         xmlns="http://www.w3.org/2000/svg"
-  //                       >
-  //                         <path
-  //                           strokeLinecap="round"
-  //                           strokeLinejoin="round"
-  //                           strokeWidth={2}
-  //                           d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-  //                         />
-  //                       </svg>
-  //                       <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-  //                         <span className="font-semibold">Click to upload</span>{" "}
-  //                         or drag and drop
-  //                       </p>
-  //                       <p className="text-xs text-gray-500 dark:text-gray-400">
-  //                         SVG, PNG, JPG or GIF (MAX. 800x400px)
-  //                       </p>
-  //                     </div>
-  //                     <input onChange={mintImage} id="dropzone-file" type="file" className="hidden" />
-  //                   </label>
-  //                 </div>
-  //                 <div className="ml-6 flex-shrink-0 overflow-hidden rounded-md">
-  //                   <img className="h-64 w-auto" src={imgBase64 || "./download.gif"} alt="" />
-  //                 </div>
-
-  //               </div>
-  //             </div>
-  //             <button
-  //               type="submit"
-  //               className="text-white gradient-blue w-40 bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-blue-900 dark:focus:ring-gray-700 dark:border-gray-700"
-  //             >
-  //               Mint
-  //             </button>
-  //           </form>
-  //         </div>
-  //       </div>
+  //     <div className="">
+  //       <button onClick={debugHost}>click</button>
+  //       <img src={imgBase64 || "./download.gif"} alt="" width="100px" />
+  //       <input name="logo" type="file" required onChange={hostImage} />
+  //       <input
+  //         name="commName"
+  //         type="text"
+  //         placeholder="Event Name"
+  //         required
+  //         onChange={(e) =>
+  //           setHostInput({
+  //             ...hostInput,
+  //             commName: e.target.value,
+  //           })
+  //         }
+  //       />
+  //       <input
+  //         name="entryContract"
+  //         type="text"
+  //         placeholder="Contract Address"
+  //         required
+  //         onChange={(e) =>
+  //           setHostInput({
+  //             ...hostInput,
+  //             entryContract: e.target.value,
+  //           })
+  //         }
+  //       />
+  //       <input
+  //         name="entryTokenId"
+  //         type="number"
+  //         placeholder="Token Id"
+  //         required
+  //         onChange={(e) =>
+  //           setHostInput({
+  //             ...hostInput,
+  //             entryTokenId: e.target.value,
+  //           })
+  //         }
+  //       />
+  //       <input
+  //         name="discordLink"
+  //         type="text"
+  //         placeholder="Discord Server Link"
+  //         required
+  //         onChange={(e) =>
+  //           setHostInput({
+  //             ...hostInput,
+  //             discordLink: e.target.value,
+  //           })
+  //         }
+  //       />
+  //       <button onClick={hostComm}>Host</button>
   //     </div>
   //   );
   // }
@@ -390,20 +243,6 @@ export default function Host() {
               Reliable, secure &amp; easy <br /> way to host gated community
             </span>
           </p>
-          {/* <div className="mt-8 flex flex-col items-center gap-4 md:flex-row">
-            <button
-              className="button button solid-gradient gradient-blue hidden w-full md:w-auto lg:block"
-              onClick={() => setSelectedTab("renderHost")}
-            >
-              Host
-            </button>
-            <button
-              className="button solid-gradient gradient-blue outlined w-full md:w-auto"
-              onClick={() => setSelectedTab("renderMint")}
-            >
-              Mint
-            </button>
-          </div> */}
         </div>
         <div className="absolute right-20 top-14">
           <Lottie options={defaultOptions} height={500} width={550} />
@@ -418,7 +257,194 @@ export default function Host() {
         RenderMint={RenderMint}
         loading={loading}
         mintNft={mintNft}
+        setHostInput={setHostInput}
+        hostInput={hostInput}
+        hostImage={hostImage}
+        hostComm={hostComm}
       />
+    </div>
+  );
+}
+
+function RenderHost({
+  setHostInput,
+  hostInput,
+  hostImage,
+  loading,
+  imgBase64,
+  hostComm,
+}) {
+  console.log(hostInput);
+  console.log("Loading is", loading)
+
+
+  function onSubmit(e) {
+    e.preventDefault();
+    hostComm();
+  }
+  return (
+    <div className="relative px-10 py-10">
+      <div>
+        <form onSubmit={onSubmit} noValidate="" className="flex flex-col gap-4">
+          <div>
+            <label
+              htmlFor="name"
+              className="ml-2 mb-2 block text-sm font-semibold"
+            >
+              Community Name
+            </label>
+            <div className="relative">
+              <input
+                id="commName"
+                onChange={(e) =>
+                  setHostInput({
+                    ...hostInput,
+                    commName: e.target.value,
+                  })
+                }
+                value={hostInput.commName}
+                className="border-gel-background border px-6 py-3 form-input"
+                name="commName"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              htmlFor="email"
+              className="ml-2 mb-2 block text-sm font-semibold"
+            >
+              Discord Server Link
+            </label>
+            <div className="relative">
+              <input
+                id="discordLink"
+                className="input-error border-gel-accent border px-6 py-3 form-input"
+                name="discordLink"
+                onChange={(e) =>
+                  setHostInput({
+                    ...hostInput,
+                    discordLink: e.target.value,
+                  })
+                }
+                value={hostInput.discordLink}
+              />
+            </div>
+            {/* <div className="p-2 text-sm text-gel-accent first-letter:capitalize">
+                  This field is required
+                </div> */}
+          </div>
+          <div className="flex w-full gap-6">
+            <div className="flex-1">
+              <label
+                htmlFor="email"
+                className="ml-2 mb-2 block text-sm font-semibold"
+              >
+                Contract Address
+              </label>
+              <div className="relative">
+                <input
+                  id="entryContract"
+                  className="input-error border-gel-accent border px-6 py-3 form-input"
+                  name="entryContract"
+                  onChange={(e) =>
+                    setHostInput({
+                      ...hostInput,
+                      entryContract: e.target.value,
+                    })
+                  }
+                  value={hostInput.entryContract}
+                />
+              </div>
+              {/* <div className="p-2 text-sm text-gel-accent first-letter:capitalize">
+                  This field is required
+                </div> */}
+            </div>
+            <div className="flex-1">
+              <label
+                htmlFor="email"
+                className="ml-2 mb-2 block text-sm font-semibold"
+              >
+                Token Id
+              </label>
+              <div className="relative">
+                <input
+                  id="entryTokenId"
+                  type="number"
+                  className="input-error border-gel-accent border px-6 py-3 form-input"
+                  name="entryTokenId"
+                  value={hostInput.entryTokenId}
+                  onChange={(e) =>
+                    setHostInput({
+                      ...hostInput,
+                      entryTokenId: e.target.value,
+                    })
+                  }
+                />
+              </div>
+              {/* <div className="p-2 text-sm text-gel-accent first-letter:capitalize">
+                  This field is required
+                </div> */}
+            </div>
+          </div>
+
+          <div>
+            <p className="ml-2 mb-2 block text-sm font-semibold">Choose File</p>
+            <div className="flex ">
+              <div className="flex items-center justify-center w-full">
+                <label
+                  htmlFor="dropzone-file"
+                  className="flex flex-col items-center justify-center w-full capa h-64 border-2 border-dashed rounded-lg cursor-pointer bg-[#191919] hover:bg-gray-800"
+                >
+                  <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                    <svg
+                      aria-hidden="true"
+                      className="w-10 h-10 mb-3 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                      />
+                    </svg>
+                    <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                      <span className="font-semibold">Click to upload</span> or
+                      drag and drop
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      SVG, PNG, JPG or GIF (MAX. 800x400px)
+                    </p>
+                  </div>
+                  <input
+                    onChange={hostImage}
+                    id="dropzone-file"
+                    type="file"
+                    className="hidden"
+                  />
+                </label>
+              </div>
+              <div className="ml-6 flex-shrink-0 overflow-hidden rounded-md">
+                <img
+                  className="h-64 w-auto"
+                  src={imgBase64 || "./download.gif"}
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="text-white mt-5 gradient-blue w-40 bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-3 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-blue-900 dark:focus:ring-gray-700 dark:border-gray-700"
+          >
+            Host
+          </button>
+        </form>
+      </div>
+      {loading ? <Loader /> : null}
     </div>
   );
 }
@@ -429,11 +455,11 @@ function RenderMint({
   mintInput,
   setMintInput,
   imgBase64,
-  mintNft
+  mintNft,
 }) {
   function onSubmit(e) {
     e.preventDefault();
-    mintNft()
+    mintNft();
   }
 
   return (
@@ -598,7 +624,11 @@ function OurTabs({
   setMintInput,
   mintInput,
   loading,
-  mintNft
+  mintNft,
+  setHostInput,
+  hostInput,
+  hostImage,
+  hostComm,
 }) {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -638,7 +668,14 @@ function OurTabs({
             key={0}
             className={classNames("rounded-xl bg-[#202020] p-3")}
           >
-            <RenderHost />
+            <RenderHost
+              setHostInput={setHostInput}
+              hostInput={hostInput}
+              hostImage={hostImage}
+              hostComm={hostComm}
+              loading={loading}
+              imgBase64={imgBase64}
+            />
           </Tab.Panel>
           <Tab.Panel
             key={1}
