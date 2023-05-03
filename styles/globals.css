@@ -116,3 +116,71 @@ a {
 .gradient-blue {
   background: #3872DD;
 }
+
+.gel-gradient-text-peach, .odometer-value {
+  background-image: linear-gradient(90deg,#f5c3a6,#b45f63);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.solid-gradient:not(.outlined) {
+  --tw-text-opacity: 1;
+  color: #202020;
+  color: rgb(var(--gel-color-black)/var(--tw-text-opacity));
+  position: relative;
+}
+
+
+.hero-button {
+  border-radius: 9999px;
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  transition-duration: .2s;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+}
+
+.solid-gradient:not(.outlined):before {
+  border-radius: 9999px;
+  content: "";
+  inset: 0;
+  padding: 2px;
+  position: absolute;
+  z-index: -1;
+}
+.hero-button:after, .hero-button:before {
+  border-radius: 9999px;
+  content: "";
+  inset: 0;
+  position: absolute;
+  transition-duration: .4s;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(.7,0,.84,0);
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  z-index: 0;
+}
+
+.gradient-peach:not(.outlined):after {
+  background-image: linear-gradient(90deg,#f5c2a5,#dea08f);
+}
+
+.hero-button {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+}
+
+@media (min-width: 1024px){
+  .hero-button {
+    color: inherit;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
