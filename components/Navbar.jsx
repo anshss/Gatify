@@ -38,8 +38,8 @@ export default function Navbar() {
   }, [lastScrollY]);
 
   return (
-    <header className={`${!show? "-top-32" : "top-2"} transition-all ease-in-out duration-500 container mx-auto fixed left-0 right-0 z-40 w-full pt-0`}>
-      <div className="px-5">
+    <header className={`${!show? "-top-32" : "top-0"} transition-all ease-in-out duration-500 container mx-auto fixed left-0 right-0 z-40 w-full pt-0`}>
+      <div className="px-5 ">
         <div className="relative flex">
           {/**/}
           <div className={`${show && lastScrollY>100 ? "backdrop-blur" : ""} flex w-full items-center justify-between rounded-3xl py-4 px-8 lg:p-10`}>
