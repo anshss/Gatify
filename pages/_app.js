@@ -70,13 +70,20 @@ const client = createClient({
   provider,
 })
 
-export default function App({ Component, pageProps }) {
+// if 
+//       return <Component {...pageProps} />;
+
+export default function App({ Component, pageProps, ...appProps }) {
+  console.log(appProps.router.pathname)
+  const isMeetingPage = ([`/meetings/[id]`].includes(appProps.router.pathname)) 
   return (
     <div>
       <WagmiConfig client={client}>
         <ConnectKitProvider debugMode>
-          <div className="container px-5 mx-auto">
-          <Navbar />
+          <div className={`${isMeetingPage ? " " : "container px-5 mx-auto" }`}>
+            {
+              !isMeetingPage ?  <Navbar /> : null
+            }
           <Component {...pageProps} />
           </div>
         </ConnectKitProvider>

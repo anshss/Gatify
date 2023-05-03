@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 import { HuddleIframe, IframeConfig } from "@huddle01/huddle01-iframe";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Link from "next/link";
+import Image from "next/image";
+import Logo from "../../assets/images/logo.png"
 
 export default  function Profile() {
 
@@ -32,10 +35,14 @@ export default  function Profile() {
       };
     
     return (
-        <div className="pt-48 min-h-screen pb-20">
-            <div className='flex gap-2'>
+        <div className="pt-10 min-h-screen">
+            <div className='flex gap-2 px-4 items-center mb-5'>
+                <Link className="router-link-active w-16 mr-6 router-link-exact-active mt-[-2px] flex transition-all duration-300 hover:opacity-60" href="/"> 
+                    <Image src={Logo}/>
+                </Link>
+     
                 <p>Meeting Link: </p>
-                <button className="flex text-md mb-5" onClick={() => { navigator.clipboard.writeText(meetLink); toast("Text copied successfully") }}>{meetLink} &nbsp; <img className="hover:opacity-60" src="../copy.svg" /></button>
+                <button className="flex text-md" onClick={() => { navigator.clipboard.writeText(meetLink); toast("Text copied successfully") }}>{meetLink} &nbsp; <img className="hover:opacity-60" src="../copy.svg" /></button>
             </div>
             <ToastContainer />
             
