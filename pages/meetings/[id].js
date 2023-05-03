@@ -5,44 +5,33 @@ import { HuddleIframe, IframeConfig } from "@huddle01/huddle01-iframe";
 
 export default  function Profile() {
 
-    // const [ profile, setProfile ] = useState()
+    const [ meetLink, setMeetLink ] = useState()
     
     const router = useRouter()
     const { id } = router.query;
+    
 
-    // useEffect(()=> {
-    //     if (id) {
-    //         fetchProfile()
-    //     }
-    // }, [id])
+    useEffect(()=> {
+        generateMeetLink()
+    }, [])
 
-    // async function fetchProfile() {
-    //     try {
-    //         const response = await client.query(getProfileById, { id }).toPromise();
-    //         setProfile(response.data.profiles.items[0])
-    //         // console.log(response.data.profiles.items[0])
+    const pageUrl = 'localhost:3000/meetings'
 
-    //         const publicationData = await client.query(getProfile, { 
-    //             request: {
-    //                 id
-    //             }
-    //          }).toPromise();
-    //          console.log( {publicationData})
-             
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
+    function generateMeetLink() {
+        setMeetLink(`${pageUrl}/${id}`)
+    }
 
     const iframeConfig = {
         roomUrl: `https://iframe.huddle01.com/${id}`,
         height: "600px",
-        width: "80%",
+        width: "100%",
         noBorder: false, // false by default
       };
     
     return (
         <div className="pt-40">
+            <button className="flex text-md mb-5" onClick={() => { navigator.clipboard.writeText(meetLink) }}>{meetLink} &nbsp; <img src="../copy.svg" /></button>
+            
             <HuddleIframe config={iframeConfig} />
         </div>
     )

@@ -40,7 +40,7 @@ const mantleTestnet = {
 }
 
 const { chains, provider } = configureChains(
-  [hyperspace, polygonMumbai, mantleTestnet],
+  [hyperspace, polygonMumbai],
   [
     jsonRpcProvider({
       rpc: (chain) => ({
