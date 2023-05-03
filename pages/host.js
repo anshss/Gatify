@@ -651,7 +651,7 @@ function OurTabs({
             {"Host"}
           </Tab>
           <Tab
-            key={"Mint"}
+            key={"Mint NFT"}
             className={({ selected }) =>
               classNames(
                 "w-full rounded-2xl py-4 px-1 font-bold leading-5 text-[#efe0e0] text-md",
@@ -660,7 +660,7 @@ function OurTabs({
               )
             }
           >
-            {"Mint"}
+            {"Mint NFT"}
           </Tab>
         </Tab.List>
         <Tab.Panels className="mt-8">

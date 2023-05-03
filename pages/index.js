@@ -1,6 +1,7 @@
 import animationData from "../assets/lottie/animation-1.json";
 import Lottie from "react-lottie";
 import { useRouter } from "next/router";
+import Footer from "@/components/Footer";
 
 const defaultOptions = {
   loop: true,
@@ -42,19 +43,20 @@ export default function Home() {
             >
               <span className="relative z-10 text-[#202020]">Start Hosting</span>
             </button>
-            <a
+            {/* <a
               href="/developers"
               className="hero-button solid-gradient gradient-peach outlined w-full md:w-auto"
               id="mainpage-cover-cta-2"
             >
               <span className="relative z-10">&gt; Start Building</span>
-            </a>
+            </a> */}
           </div>
         </div>
         <div className="absolute right-20 top-14">
           <Lottie options={defaultOptions} height={500} width={550} />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

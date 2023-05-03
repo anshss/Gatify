@@ -50,7 +50,7 @@ export default function Active() {
   }
 
   function buy() {
-    router.push("/");
+    router.push("/store");
   }
 
   function explorer(prop) {

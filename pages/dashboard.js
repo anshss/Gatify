@@ -175,7 +175,7 @@ export default function Dashboard() {
   function renderJoinedComm() {
     return (
       <div className={styles.joinedComm}>
-        <p>Joined Communities</p>
+        {/* <p>Joined Communities</p> */}
         <div>
           {joinedComm.map((item, i) => (
             <CommCardJoined
@@ -198,7 +198,7 @@ export default function Dashboard() {
   function renderHostedComm() {
     return (
       <div className={styles.hostedComm}>
-        <p>Hosted Communities</p>
+        {/* <p>Hosted Communities</p> */}
         <div>
           {hostedComm.map((item, i) => (
             <CommCardHosted
