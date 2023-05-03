@@ -2,6 +2,7 @@ import animationData from "../assets/lottie/animation-1.json";
 import Lottie from "react-lottie";
 import { useRouter } from "next/router";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 const defaultOptions = {
   loop: true,
@@ -13,10 +14,10 @@ const defaultOptions = {
 };
 
 export default function Home() {
-	const router = useRouter()
+  const router = useRouter();
   return (
     <div className="min-h-screen">
-      <div className="hero-wrapper pb-10 relative">
+      <div className="hero-wrapper !h-auto pb-0 relative">
         <div className="relative mt-8 flex flex-1 flex-col justify-end overflow-hidden rounded-[36px] p-8 px-12">
           <div className="hero-bg absolute inset-0 -z-10 rounded-[36px] bg-gel-black md:block [&>div]:absolute [&>div]:inset-0 [&>div]:rounded-[36px]"></div>
           {/**/}
@@ -37,11 +38,13 @@ export default function Home() {
           </p>
           <div className="mt-8 flex flex-col items-center gap-4 md:flex-row">
             <button
-				onClick={() => router.push("/host")}
+              onClick={() => router.push("/host")}
               id="mainpage-cover-cta-1"
               className="hero-button px-8 solid-gradient gradient-peach w-full md:w-auto text-black"
             >
-              <span className="relative z-10 text-[#202020]">Start Hosting</span>
+              <span className="relative z-10 text-[#202020]">
+                Start Hosting
+              </span>
             </button>
             {/* <a
               href="/developers"
@@ -54,6 +57,122 @@ export default function Home() {
         </div>
         <div className="absolute right-20 top-14">
           <Lottie options={defaultOptions} height={500} width={550} />
+        </div>
+      </div>
+      <div className="py-4">
+        <i className="m-auto block w-4">
+          <svg
+            width={16}
+            height={16}
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m2 5 6 6 6-6"
+              stroke="#EFE0E0"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </i>
+      </div>
+      <div className="mt-20">
+        <h2 className="mx-auto mb-2 max-w-[360px] text-center text-lg font-bold">
+          <span className="gel-gradient-text-peach">Create and Manage</span>
+        </h2>
+        <h3 className="gel-section-title mb-16 text-3xl text-center">
+          <span>Secure Gated Communities with Gatify</span>
+          {/* <span>Explore how you can use Gatify</span> */}
+        </h3>
+
+        <div className="use-cases-list grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-20">
+          <Link
+            href="/host"
+            className="relative flex h-[280px] flex-col rounded-3xl bg-gel-black p-8 text-sm"
+          >
+            <div className="flex flex-1 flex-col">
+              <i className="absolute right-5 flex w-5">
+                <svg
+                  width={9}
+                  height={9}
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="currentColor"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M6.784 1.333H2.31V.04h6.68v6.68H7.7V2.248L1.906 8.04.99 7.126l5.793-5.793Z"
+                  />
+                </svg>
+              </i>
+              <div className="font-semibold text-gel-gray transition-all duration-200 group-hover:-translate-y-5 group-hover:scale-105 group-hover:opacity-0">
+                <span>NFT-based</span>
+              </div>
+              <div className="mt-6 flex-1 text-lg font-bold transition-all delay-75 duration-200 group-hover:-translate-y-5 group-hover:scale-105 group-hover:opacity-0">
+                Gatify is the platform that allows you to create gated
+                communities based on NFTs. This means that only users who have
+                the required NFT will be able to join your community.
+              </div>
+            </div>
+          </Link>
+          <Link
+            href="/host"
+            className="relative flex h-[280px] flex-col rounded-3xl bg-gel-black p-8 text-sm"
+          >
+            <div className="flex flex-1 flex-col">
+              <i className="absolute right-5 flex w-5">
+                <svg
+                  width={9}
+                  height={9}
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="currentColor"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M6.784 1.333H2.31V.04h6.68v6.68H7.7V2.248L1.906 8.04.99 7.126l5.793-5.793Z"
+                  />
+                </svg>
+              </i>
+              <div className="font-semibold text-gel-gray transition-all duration-200 group-hover:-translate-y-5 group-hover:scale-105 group-hover:opacity-0">
+                <span>Mint your own NFT</span>
+              </div>
+              <div className="mt-6 flex-1 text-lg font-bold transition-all delay-75 duration-200 group-hover:-translate-y-5 group-hover:scale-105 group-hover:opacity-0">
+			    Gatify allows you to mint your own NFTs, which can be used to gate your community. This way, you can control who has access to your community, and ensure that only the people you want are able to join.
+              </div>
+            </div>
+          </Link>
+          <Link
+            href="/meetings"
+            className="relative flex h-[280px] flex-col rounded-3xl bg-gel-black p-8 text-sm"
+          >
+            <div className="flex flex-1 flex-col">
+              <i className="absolute right-5 flex w-5">
+                <svg
+                  width={9}
+                  height={9}
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="currentColor"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M6.784 1.333H2.31V.04h6.68v6.68H7.7V2.248L1.906 8.04.99 7.126l5.793-5.793Z"
+                  />
+                </svg>
+              </i>
+              <div className="font-semibold text-gel-gray transition-all duration-200 group-hover:-translate-y-5 group-hover:scale-105 group-hover:opacity-0">
+                <span>Host a meeting</span>
+              </div>
+              <div className="mt-6 flex-1 text-lg font-bold transition-all delay-75 duration-200 group-hover:-translate-y-5 group-hover:scale-105 group-hover:opacity-0">
+			  Host Exclusive Community Meetings with Gatify's NFT Verification - Only Verified NFT Holders Can Join!
+              </div>
+            </div>
+          </Link>
         </div>
       </div>
       <Footer />
