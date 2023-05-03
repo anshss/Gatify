@@ -81,7 +81,7 @@ export default function Home() {
         <h2 className="mx-auto mb-2 max-w-[360px] text-center text-lg font-bold">
           <span className="gel-gradient-text-peach">Create and Manage</span>
         </h2>
-        <h3 className="gel-section-title mb-16 text-3xl text-center">
+        <h3 className="gel-section-title mb-16 text-4xl font-semibold text-center">
           <span>Secure Gated Communities with Gatify</span>
           {/* <span>Explore how you can use Gatify</span> */}
         </h3>
@@ -169,7 +169,7 @@ export default function Home() {
                 <span>Host a meeting</span>
               </div>
               <div className="mt-6 flex-1 text-lg font-bold transition-all delay-75 duration-200 group-hover:-translate-y-5 group-hover:scale-105 group-hover:opacity-0">
-			  Host Exclusive Community Meetings with Gatify's NFT Verification - Only Verified NFT Holders Can Join!
+			          Host Exclusive Community Meetings with Gatify's NFT Verification - Only Verified NFT Holders Can Join!
               </div>
             </div>
           </Link>
