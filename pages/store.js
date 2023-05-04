@@ -1,6 +1,6 @@
 import styles from "@/styles/Home.module.scss";
 import { useEffect, useState } from "react";
-import { fvmAddress, polygonAddress, gatifyAbi, fvmCurrency } from "@/config";
+import { fvmAddress, gatifyAbi, fvmCurrency } from "@/config";
 import web3modal from "web3modal";
 import { ethers } from "ethers";
 import axios from "axios";
@@ -70,7 +70,7 @@ export default function Store() {
       <div className="relative flex  w-[23%] flex-col rounded-xl bg-gel-black text-sm overflow-hidden">
         <div className="flex flex-1 flex-col">
           <div className="rounded-t-3xl ">
-            <img className="w-full" src={prop.image} alt="" width="200px" />
+            <img className="w-full aspect-square" src={prop.image} alt="" width="200px" height="200px" />
           </div>
           <div className="p-6">
             <div></div>

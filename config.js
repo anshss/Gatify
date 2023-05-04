@@ -1,15 +1,55 @@
-export const fvmAddress = `0xC4ae84c5f31041d0E6842438497cc9e7DC57F615`
-export const polygonAddress = `0xC4ae84c5f31041d0E6842438497cc9e7DC57F615`
-export const mantleTestnetAddress = `0xC4ae84c5f31041d0E6842438497cc9e7DC57F615`
+// fvmAddress is where project is working on
+// fvmAddressMain is actual address of contract on fvm
+const fvmAddressMain = `0x2f30921869dc2Cd6cD48373ef1E7c752958B990E`;
+const polygonAddress = `0xC4ae84c5f31041d0E6842438497cc9e7DC57F615`;
+const mantleTestnetAddress = ``;
 
+const fvmCurrencyMain = `tFIL`;
+const polygonCurrency = `MATIC`;
+const mantleCurrency = `BIT`;
 
-export const fvmCurrency=`tFIL`
-export const polygonCurrency=`MATIC`
-export const mantleCurrency=`BIT`
+const fvmExplorerMain = `https://hyperspace.filfox.info/en/address/`;
+const polygonExplorer = `https://mumbai.polygonscan.com/`;
+const mantleExplorer = `https://explorer.testnet.mantle.xyz/`;
 
-export const fvmExplorer=`https://hyperspace.filfox.info/en/address/0x48e6a467852fa29710aaacdb275f85db4fa420eb`
-export const polygonExplorer=`https://mumbai.polygonscan.com/`
-export const mantleExplorer=`BIT`
+// 
+//
+// import { ethers } from "ethers";
+
+// async function fetchChain() {
+//   const chainId = await provider
+//     .getNetwork()
+//     .then((network) => network.chainId);
+//   return chainId;
+// }
+
+// const provider = new ethers.providers.Web3Provider(window.ethereum);
+// const chainId = fetchChain();
+
+// if (chainId == 80001) {
+//   //polygon
+//   fvmAddress = polygonAddress;
+//   fvmCurrency = polygonCurrency;
+//   fvmExplorer = polygonExplorer;
+// } else if (chainId == 3141) {
+//   //fvm
+//   fvmAddress = fvmAddressMain;
+//   fvmCurrency = fvmCurrencyMain;
+//   fvmExplorer = fvmExplorerMain;
+// } else if (chainId == 5001) {
+//   //mantle
+//   fvmAddress = mantleTestnetAddress;
+//   fvmCurrency = mantleCurrency;
+//   fvmExplorer = mantleExplorer;
+// }
+
+// export { fvmAddress };
+//
+// 
+
+export const fvmAddress = polygonAddress;
+export const fvmCurrency = polygonCurrency;
+export const fvmExplorer = polygonExplorer ;
 
 
 export const gatifyAbi = `[
@@ -787,4 +827,4 @@ export const gatifyAbi = `[
 		"stateMutability": "view",
 		"type": "function"
 	}
-]`
+]`;

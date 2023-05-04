@@ -9,6 +9,7 @@ import animationData from "../assets/lottie/animation-1.json";
 import { Tab } from "@headlessui/react";
 
 export default function Host() {
+  
   const [loading, setLoading] = useState(false);
   const [hostInput, setHostInput] = useState({
     logoLink: null,
@@ -18,6 +19,7 @@ export default function Host() {
     entryTokenId: "",
     discordLink: "",
   });
+
   const [mintInput, setMintInput] = useState({
     image: null,
     name: "",
@@ -94,7 +96,7 @@ export default function Host() {
 
   async function getFvmContract() {
     const modal = new web3modal({
-      network: "mumbai",
+      // network: "mumbai",
       cacheProvider: true,
     });
     const connection = await modal.connect();
@@ -128,7 +130,7 @@ export default function Host() {
       const price = ethers.utils.parseEther(mintInput.price);
       const supply = mintInput.supply;
       const mint = await contract.mintNft(url, supply, price, {
-        gasLimit: 1000000,
+        gasLimit: 10000000,
       });
       await mint.wait();
       setLoading(false);

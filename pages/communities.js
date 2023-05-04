@@ -1,6 +1,6 @@
 import styles from "@/styles/Home.module.scss";
 import { useEffect, useState } from "react";
-import { fvmAddress, polygonAddress, gatifyAbi, polygonExplorer } from "@/config";
+import { fvmAddress, gatifyAbi, fvmExplorer } from "@/config";
 import web3modal from "web3modal";
 import { ethers } from "ethers";
 import SearchIcon from "../assets/images/search.png";
@@ -54,7 +54,7 @@ export default function Active() {
   }
 
   function explorer(prop) {
-    router.push(`${polygonExplorer}/address/${prop.entryContract}`);
+    router.push(`${fvmExplorer}/address/${prop.entryContract}`);
   }
 
   function CommCard(prop) {
@@ -62,7 +62,7 @@ export default function Active() {
       <div className=" relative flex mt-10 w-2/3 mx-auto flex-row rounded-xl bg-gel-black text-sm overflow-hidden">
         <div className="flex mr-8 flex-col">
           <div className="rounded-t-3xl p-4 w-[230px] ">
-            <img className="w-full" src={prop.logoLink} alt="" />
+            <img className="w-full aspect-square" src={prop.logoLink} alt="" />
           </div>
           <div className="use-case-projects flex transition-all delay-100 duration-200 group-hover:translate-y-5 group-hover:scale-105 group-hover:opacity-0"></div>
         </div>
