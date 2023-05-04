@@ -92,7 +92,7 @@ export default function Meetings() {
       <div className=" relative flex mt-10 w-2/3 mx-auto flex-row rounded-xl bg-gel-black text-sm overflow-hidden">
         <div className="flex mr-8 flex-col">
           <div className="rounded-t-3xl p-4 w-[230px] ">
-            <img className="w-full" src={prop.logoLink} alt="" />
+            <img className="w-full aspect-square object-cover rounded-md" src={prop.logoLink} alt="" />
           </div>
           <div className="use-case-projects flex transition-all delay-100 duration-200 group-hover:translate-y-5 group-hover:scale-105 group-hover:opacity-0"></div>
         </div>
@@ -126,7 +126,7 @@ export default function Meetings() {
   }
 
   return (
-    <div className="pt-40">
+    <div className="pt-40 pb-20">
         <p className="flex items-center justify-center">My Communities</p>
         <div className="mt-6">
           {myComm.map((item, i) => (

@@ -62,7 +62,7 @@ export default function Active() {
       <div className=" relative flex mt-10 w-2/3 mx-auto flex-row rounded-xl bg-gel-black text-sm overflow-hidden">
         <div className="flex mr-8 flex-col">
           <div className="rounded-t-3xl p-4 w-[230px] ">
-            <img className="w-full aspect-square" src={prop.logoLink} alt="" />
+            <img className="w-full aspect-square object-cover rounded-md" src={prop.logoLink} alt="" />
           </div>
           <div className="use-case-projects flex transition-all delay-100 duration-200 group-hover:translate-y-5 group-hover:scale-105 group-hover:opacity-0"></div>
         </div>
@@ -104,7 +104,7 @@ export default function Active() {
   return (
     <div className={styles.active}>
       <div className="bg w-screen h-screen fixed top-0 left-0 bg-no-repeat bg-cover -z-10 opacity-10"></div>
-      <div className="container mx-auto pt-40">
+      <div className="container mx-auto pt-40 pb-20">
         <div className="flex items-center flex-col justify-center ">
           <p className="text-center text-4xl">Search any Community</p>
           <div className="relative mt-6 mb-6">

@@ -101,7 +101,7 @@ export default function Store() {
   }
 
   return (
-    <div className="pt-40">
+    <div className="pt-40 pb-20">
       <div className="flex flex-wrap mt-6 gap-6 justify-start">
         {nfts.map((item, i) => (
           <NftCard
